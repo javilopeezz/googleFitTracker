@@ -39,6 +39,20 @@ class DatosRepository extends ServiceEntityRepository
         }
     }
 
+    public function findLastEmailFecha(Datos $datos): ?Datos
+    {
+        return $this->createQueryBuilder('d')
+            ->andWhere('d.emailUsuario = :email')
+            ->andWhere('d.fecha = :fecha')
+            ->setParameter('email', $datos->getEmailUsuario())
+            ->setParameter('fecha', $datos->getFecha())
+            ->orderBy('d.id', 'DESC')
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
+    }
+
 //    /**
 //     * @return Datos[] Returns an array of Datos objects
 //     */

@@ -121,9 +121,24 @@ $(function () {
           console.log(datos);
 
           $.ajax({
-            url: '/api/datos',
+            url: '/api/datos/comprueba-existe',
             method: 'POST',
             data: datos,
+            success: function (data) {
+              if (data.data) {
+                $.ajax({
+                  url: '/api/datos',
+                  method: 'PUT',
+                  data: datos,
+                })
+              }else{
+                $.ajax({
+                  url: '/api/datos',
+                  method: 'POST',
+                  data: datos,
+                })
+              }
+            }
           })
 
           $('#pasosHoy').html(steps);
@@ -141,10 +156,6 @@ $(function () {
     } else {
       oauth2SignIn();
     }
-  }
-
-  function insertData(datos) {
-
   }
 
 })
