@@ -1,0 +1,193 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+
+    {{ parent() }}
+
+    <link rel="stylesheet" href=" {{ asset('assets/css/main.css') }}">
+
+{% endblock %}
+
+{% block javascripts %}
+
+    {{ parent() }}
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script src="https://kit.fontawesome.com/06d773c21c.js" crossorigin="anonymous"></script>
+
+{% endblock %}
+
+{% block body %}
+
+    {% include 'header.html.twig' %}
+
+    <main>
+        <div class="slider-area2">
+            <div class="slider-height2 d-flex align-items-center">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="hero-cap hero-cap2 pt-70">
+                                <h2>Obtener Datos</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <section class="pricing-area section-padding30 fix black-bg">
+            <div class="container d-flex" style="justify-content: space-evenly;">
+                <div class="card me-5">
+                    <div class="content">
+                        <div class="contentBx">
+                            <i class="fa-solid fa-person-running fa-2xl" style="color: #ffffff;"></i>
+                            <h2 class="text-light">Datos de Hoy</h2>
+                        </div>
+                    </div>
+                    <div class="sci">
+                        <div class="p-4">
+                            <p>Revisa tus datos fit actualizados a tiempo real.</p>
+                            <button onclick="oauthSignInDatosHoy()" class="border-btn hero-btn text-light">Ir</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card me-5">
+                    <div class="content">
+                        <div class="contentBx">
+                            <i class="fa-solid fa-person-running fa-2xl" style="color: #ffffff;"></i>
+                            <h2 class="text-light">Datos de Ayer</h2>
+                        </div>
+                    </div>
+                    <div class="sci">
+                        <div class="p-4">
+                            <p>Revisa los datos fit que obtuviste ayer.</p>
+                            <button onclick="oauthSignInDatosAyer()" class="border-btn hero-btn text-light">Ir</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card me-5">
+                    <div class="content">
+                        <div class="contentBx">
+                            <i class="fa-solid fa-person-running fa-2xl" style="color: #ffffff;"></i>
+                            <h2 class="text-light">Historial de Datos</h2>
+                        </div>
+                    </div>
+                    <div class="sci">
+                        <div class="p-4">
+                            <p>Revisa tus datos fit de los últimos 14 días.</p>
+                            <button onclick="oauthSignInDatosHistorial()" class="border-btn hero-btn text-light">Ir</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        /*
+        * Create form to request access token from Google's OAuth 2.0 server.
+        */
+        function oauthSignInDatosHoy() {
+            // Google's OAuth 2.0 endpoint for requesting an access token
+            var oauth2Endpoint = 'https://accounts.google.com/o/oauth2/v2/auth';
+
+            // Create <form> element to submit parameters to OAuth 2.0 endpoint.
+            var form = document.createElement('form');
+            form.setAttribute('method', 'GET'); // Send as a GET request.
+            form.setAttribute('action', oauth2Endpoint);
+
+            // Parameters to pass to OAuth 2.0 endpoint.
+            var params = {'client_id': '1004402412608-dfh826kvr7mo2rchs8e9cjsegh9prv21.apps.googleusercontent.com',
+                        'redirect_uri': 'http://localhost:8000/datos-hoy',
+                        'response_type': 'token',
+                        'scope': 'https://www.googleapis.com/auth/fitness.activity.read https://www.googleapis.com/auth/fitness.body.read https://www.googleapis.com/auth/fitness.location.read',
+                        'include_granted_scopes': 'true',
+                        'state': 'pass-through value'};
+
+            // Add form parameters as hidden input values.
+            for (var p in params) {
+            var input = document.createElement('input');
+            input.setAttribute('type', 'hidden');
+            input.setAttribute('name', p);
+            input.setAttribute('value', params[p]);
+            form.appendChild(input);
+            }
+
+            // Add form to page and submit it to open the OAuth 2.0 endpoint.
+            document.body.appendChild(form);
+            form.submit();
+        }
+
+        function oauthSignInDatosAyer() {
+            // Google's OAuth 2.0 endpoint for requesting an access token
+            var oauth2Endpoint = 'https://accounts.google.com/o/oauth2/v2/auth';
+
+            // Create <form> element to submit parameters to OAuth 2.0 endpoint.
+            var form = document.createElement('form');
+            form.setAttribute('method', 'GET'); // Send as a GET request.
+            form.setAttribute('action', oauth2Endpoint);
+
+            // Parameters to pass to OAuth 2.0 endpoint.
+            var params = {'client_id': '1004402412608-dfh826kvr7mo2rchs8e9cjsegh9prv21.apps.googleusercontent.com',
+                        'redirect_uri': 'http://localhost:8000/datos-ayer',
+                        'response_type': 'token',
+                        'scope': 'https://www.googleapis.com/auth/fitness.activity.read https://www.googleapis.com/auth/fitness.body.read https://www.googleapis.com/auth/fitness.location.read',
+                        'include_granted_scopes': 'true',
+                        'state': 'pass-through value'};
+
+            // Add form parameters as hidden input values.
+            for (var p in params) {
+            var input = document.createElement('input');
+            input.setAttribute('type', 'hidden');
+            input.setAttribute('name', p);
+            input.setAttribute('value', params[p]);
+            form.appendChild(input);
+            }
+
+            // Add form to page and submit it to open the OAuth 2.0 endpoint.
+            document.body.appendChild(form);
+            form.submit();
+        }
+
+        function oauthSignInDatosHistorial() {
+            // Google's OAuth 2.0 endpoint for requesting an access token
+            var oauth2Endpoint = 'https://accounts.google.com/o/oauth2/v2/auth';
+
+            // Create <form> element to submit parameters to OAuth 2.0 endpoint.
+            var form = document.createElement('form');
+            form.setAttribute('method', 'GET'); // Send as a GET request.
+            form.setAttribute('action', oauth2Endpoint);
+
+            // Parameters to pass to OAuth 2.0 endpoint.
+            var params = {'client_id': '1004402412608-dfh826kvr7mo2rchs8e9cjsegh9prv21.apps.googleusercontent.com',
+                        'redirect_uri': 'http://localhost:8000/datos-historial',
+                        'response_type': 'token',
+                        'scope': 'https://www.googleapis.com/auth/fitness.activity.read https://www.googleapis.com/auth/fitness.body.read https://www.googleapis.com/auth/fitness.location.read',
+                        'include_granted_scopes': 'true',
+                        'state': 'pass-through value'};
+
+            // Add form parameters as hidden input values.
+            for (var p in params) {
+            var input = document.createElement('input');
+            input.setAttribute('type', 'hidden');
+            input.setAttribute('name', p);
+            input.setAttribute('value', params[p]);
+            form.appendChild(input);
+            }
+
+            // Add form to page and submit it to open the OAuth 2.0 endpoint.
+            document.body.appendChild(form);
+            form.submit();
+        }
+    </script>
+
+    <script>
+        window.onload = function () {
+          google.accounts.id.initialize({
+            client_id: '1004402412608-dfh826kvr7mo2rchs8e9cjsegh9prv21.apps.googleusercontent.com',
+            callback: handleCredentialResponse
+          });
+          google.accounts.id.prompt();
+        };
+    </script>
+
+{% endblock %}

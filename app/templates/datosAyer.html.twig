@@ -1,0 +1,89 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+
+    {{ parent() }}
+
+{% endblock %}
+
+{% block javascripts %}
+
+    {{ parent() }}
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script src="{{ asset('assets/js/authDatosAyer.js') }}"></script>
+    <script src="https://cdnjs.com/libraries/Chart.js"></script>
+    <script src="https://kit.fontawesome.com/06d773c21c.js" crossorigin="anonymous"></script>
+
+{% endblock %}
+
+{% block body %}
+
+    {% include 'header.html.twig' %}        
+
+        <main>
+            <div class="slider-area2">
+                <div class="slider-height2 d-flex align-items-center">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xl-12">
+                                <div class="hero-cap hero-cap2 pt-70">
+                                    <h2>Datos de Ayer</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <section class="team-area pt-80 bg-black" style="height: 51vh;">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-6">
+                            <div class="single-cat text-center mb-30 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".2s" >
+                                <div class="cat-icon">
+                                    <img src="assets/img/gallery/team1.png" alt="">
+                                </div>
+                                <div class="cat-cap">
+                                    <h5><a>Tus Pasos</a></h5>
+                                    <p id="pasosAyer"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <div class="single-cat text-center mb-30 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".4s">
+                                <div class="cat-icon">
+                                    <img src="assets/img/gallery/team2.png" alt="">
+                                </div>
+                                <div class="cat-cap">
+                                    <h5><a>Tu Peso</a></h5>
+                                    <p id="pesoAyer"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <div class="single-cat text-center mb-30 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".6s">
+                                <div class="cat-icon">
+                                    <img src="assets/img/gallery/team3.png" alt="">
+                                </div>
+                                <div class="cat-cap">
+                                    <h5><a>Tu Distancia Recorrida</a></h5>
+                                    <p id="distanciaAyer"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <div class="single-cat text-center mb-30 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".8s">
+                                <div class="cat-icon">
+                                    <img src="assets/img/gallery/team3.png" alt="">
+                                </div>
+                                <div class="cat-cap">
+                                    <h5><a>Tus Calorías Quemadas</a></h5>
+                                    <p id="caloriasAyer"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    
+{% endblock %}
