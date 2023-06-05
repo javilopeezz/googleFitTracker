@@ -46,6 +46,67 @@ class apiController extends AbstractController
         }
     }
 
+    #[Route(path: '/datos/comprueba-existe', name: 'CompruebaExiste', methods: ['POST'])]
+    public function compruebaExiste(Request $request, DatosRepository $datosRepository): JsonResponse
+    {
+        $datos = new Datos();
+
+        $datos->setEmailUsuario($request->request->get('emailUsuario'));
+        $datos->setPasos($request->request->get('pasos'));
+        $datos->setPeso($request->request->get('peso'));
+        $datos->setDistancia($request->request->get('distancia'));
+        $datos->setCaloriasQuemadas($request->request->get('caloriasQuemadas'));
+        $datos->setFecha(date_create($request->request->get('fecha')));
+
+        $datosComprobado = $datosRepository->findLastEmailFecha($datos);
+        if ($datosComprobado == null) {
+            return new JsonResponse([
+                'success' => true,
+                'data' => false,
+            ]);
+        }else{
+            return new JsonResponse([
+                'success' => true,
+                'data' => true,
+            ]);
+        }
+        
+    }
+
+    #[Route(path: '/datos', name: 'UpdateDatos', methods: ['PUT'])]
+    public function updateDatos(Request $request, ManagerRegistry $doctrine, DatosRepository $datosRepository): JsonResponse
+    {
+        $datos = new Datos();
+
+        $datos->setEmailUsuario($request->request->get('emailUsuario'));
+        $datos->setPasos($request->request->get('pasos'));
+        $datos->setPeso($request->request->get('peso'));
+        $datos->setDistancia($request->request->get('distancia'));
+        $datos->setCaloriasQuemadas($request->request->get('caloriasQuemadas'));
+        $datos->setFecha(date_create($request->request->get('fecha')));
+
+        $datosActualizar = $datosRepository->findLastEmailFecha($datos);
+
+        $datosActualizar->setPasos($datos->getPasos());
+        $datosActualizar->setPeso($datos->getPeso());
+        $datosActualizar->setDistancia($datos->getDistancia());
+        $datosActualizar->setCaloriasQuemadas($datos->getCaloriasQuemadas());
+
+        $entityManager = $doctrine->getManager();
+        $entityManager->persist($datosActualizar);
+        $entityManager->flush();
+
+        $response = new JsonResponse();
+
+        $response->setContent(json_encode(array(
+            'success' => true,
+            'mensaje' => 'Datos actualizados correctamente.'
+        )));
+
+        $response->setStatusCode('202');
+        return $response;
+    }
+
     #[Route(path: '/datos', name: 'InsertDatos', methods: ['POST'])]
     public function insertDatos(Request $request, ManagerRegistry $doctrine): JsonResponse
     {
