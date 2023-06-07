@@ -3020,14 +3020,18 @@ hr {
 
 /* line 924, C:/Users/HP/Desktop/July-HTML/292 Health coach/assets/scss/_common.scss */
 .section-tittle2 h2 {
-  font-size: 70px;
+  /*font-size: 70px;*/
   display: block;
   color: #2c234d;
   font-weight: 700;
   text-transform: uppercase;
   color: #fff;
   margin-bottom: 25px;
+  font-size: 100px;
+	-webkit-text-stroke: 1px #f6f7f8;
+  -webkit-text-fill-color: transparent;
 }
+
 
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
 
@@ -4207,7 +4211,7 @@ hr {
 /* line 3, C:/Users/HP/Desktop/July-HTML/292 Health coach/assets/scss/_about.scss */
 .about-area2 .support-wrapper {
   display: flex;
-  justify-content: start;
+  justify-content: center;
   flex-wrap: wrap;
 }
 
@@ -4222,7 +4226,6 @@ hr {
 /* line 11, C:/Users/HP/Desktop/July-HTML/292 Health coach/assets/scss/_about.scss */
 .about-area2 .support-wrapper .left-content2 {
   width: 38%;
-  padding-left: 60px;
 }
 
 @media only screen and (min-width: 1200px) and (max-width: 1440px) {
