@@ -20,6 +20,15 @@ class frontController extends AbstractController
         
     }
 
+    #[Route(path: '/sobre-nosotros', name: 'SobreNosotros')]
+    public function sobreNosotros(): Response
+    {
+        
+        $html = $this->render('sobreNosotros.html.twig');
+        return $html;
+        
+    }
+
     #[Route(path: '/datos', name: 'Datos')]
     public function datos(): Response
     {
@@ -52,6 +61,15 @@ class frontController extends AbstractController
     {
         
         $html = $this->render('datosHistorial.html.twig');
+        return $html;
+        
+    }
+
+    #[Route(path: '/contacto', name: 'Contacto')]
+    public function Contacto(): Response
+    {
+        
+        $html = $this->render('contacto.html.twig');
         return $html;
         
     }
