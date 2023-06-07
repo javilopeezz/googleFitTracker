@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+
+    {{ parent() }}
+
+    <link rel="stylesheet" href=" {{ asset('assets/css/main.css') }}">
+
+{% endblock %}
+
+{% block javascripts %}
+
+    {{ parent() }}
+    <script src="https://kit.fontawesome.com/06d773c21c.js" crossorigin="anonymous"></script>
+
+{% endblock %}
+
+{% block body %}
+
+    {% include 'header.html.twig' %}
+
+    <main>
+        <div class="slider-area2">
+            <div class="slider-height2 d-flex align-items-center">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="hero-cap hero-cap2 pt-70">
+                                <h2>Sobre nosotros</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <section class="about-area2 fix pb-padding pt-50 pb-80 black-bg">
+            <div class="support-wrapper align-items-center">
+                <div class="right-content2 wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".3s" >
+                    <!-- img -->
+                    <div class="right-img">
+                    <img src="{{ asset('/plantilla/img/fondo_pulseras.png') }}" style="height: auto; width: 600px;" alt="">
+                    </div>
+                </div>
+                <div class="left-content2" id="contentAboutUs">
+                    <!-- section tittle -->
+                    <div class="section-tittle2 mb-20 wow fadeInRight" data-wow-duration="1s" data-wow-delay=".3s">
+                        <div class="front-text">
+                            <h2>About Us</h2>
+                            <p>You’ll look at graphs and charts in Task One, how to approach the task and the language needed 
+                                for a successful answer. You’ll examine Task Two questions and learn how to plan, write and 
+                                check academic essays.</p>
+                            <p class="mb-40">Task One, how to approach the task and the language needed for a successful answer. You’ll 
+                            examine Task Two questions and learn how to plan, write and check academic essays.</p>
+                            <a href="/datos" class="border-btn">Ver tus Datos</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+{% endblock %}
