@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 #[Route(path: '/admin', name: 'admin_')]
@@ -28,6 +29,14 @@ class adminController extends AbstractController
             'last_username' => $lastUsername,
             'error'         => $error,
         ]);
+        
+    }
+
+    #[IsGranted('ROLE_ADMIN')]
+    #[Route(path: '/datos', name: 'DatosAdmin')]
+    public function datosAdmin(): Response
+    {
+        return $this->render('admin/datos.html.twig');
         
     }
 }
