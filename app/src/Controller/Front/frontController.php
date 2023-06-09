@@ -64,13 +64,4 @@ class frontController extends AbstractController
         return $html;
         
     }
-
-    #[Route(path: '/contacto', name: 'Contacto')]
-    public function Contacto(): Response
-    {
-        
-        $html = $this->render('contacto.html.twig');
-        return $html;
-        
-    }
 }
